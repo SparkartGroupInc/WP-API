@@ -96,6 +96,7 @@ class WP_JSON_Media extends WP_JSON_Posts {
 		$data['is_image'] = wp_attachment_is_image( $post['ID'] );
 
 		$data['attachment_meta'] = wp_get_attachment_metadata( $post['ID'] );
+		$data['attachment_meta']['alt'] = trim(strip_tags( get_post_meta($post['ID'], '_wp_attachment_image_alt', true) ));
 
 		// Ensure empty meta is an empty object
 		if ( empty( $data['attachment_meta'] ) ){
