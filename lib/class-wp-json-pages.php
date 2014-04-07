@@ -122,7 +122,47 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 		// Override entity meta keys with the correct links
 		$_post['meta']['links']['self'] = json_url( $this->base . '/' . get_page_uri( $post['ID'] ) );
 
-		if ( ! empty( $post['post_parent'] ) ) {
+		$query = array(
+			'post_type'		=> 'page',
+			'post_parent'	=> $post['ID'],
+			'nopaging'		=> true,
+			'orderby'			=> 'menu_order',
+			'order'				=> 'ASC'
+		);
+		$page_query = new WP_Query();
+		$children = $page_query->query( $query );
+		if ( $children ){
+			// holds all the page data
+			$struct = array();
+			foreach ( $children as $post ) {
+				$post = get_object_vars( $post );
+				$_post = array(
+					'ID' => (int) $post['ID'],
+				);
+				// prepare common page fields
+				$page_fields = array(
+					'title'		=> get_the_title( $post['ID'] ), // $post['post_title'],
+					'status'	=> $post['post_status'],
+					'type'		=> $post['post_type'],
+					'author'	=> (int) $post['post_author'],
+					'content'	=> apply_filters( 'the_content', $post['post_content'] ),
+					'link'		=> get_permalink( $post['ID'] ),
+					'slug'		=> $post['post_name'],
+					'excerpt'	=> $this->prepare_excerpt( $post['post_excerpt'] )
+				);
+				// Post meta
+				$_post['post_meta'] = $this->prepare_meta( $post['ID'] );
+				// Merge requested $post_fields fields into $_post
+				$_post = array_merge( $_post, $page_fields );
+				$struct[] = apply_filters( 'json_prepare_post', $_post, $post, 'view' );
+			}
+			$_post['children'] = $struct;
+		}
+		else {
+			$_post['children'] = false;
+		}
+
+		if ( ! empty( $post['post_parent'] ) )
 			$_post['meta']['links']['up'] = json_url( $this->base . '/' . get_page_uri( (int) $post['post_parent'] ) );
 		}
 
