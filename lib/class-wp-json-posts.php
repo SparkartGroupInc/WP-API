@@ -244,6 +244,7 @@ class WP_JSON_Posts {
 			return new WP_Error( 'json_post_invalid_id', __( 'Invalid post ID.' ), array( 'status' => 404 ) );
 
 		$post_type = get_post_type_object( $post['post_type'] );
+
 		if ( ! $this->check_read_permission( $post ) )
 			return new WP_Error( 'json_user_cannot_read', __( 'Sorry, you cannot read this post.' ), array( 'status' => 401 ) );
 
@@ -607,6 +608,7 @@ class WP_JSON_Posts {
 		}
 
 		$excerpt = apply_filters( 'the_excerpt', apply_filters( 'get_the_excerpt', $excerpt ) );
+
 		if ( empty( $excerpt ) ) {
 			return null;
 		}

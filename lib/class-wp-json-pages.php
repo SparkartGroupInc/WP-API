@@ -110,11 +110,11 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 		$_post['meta']['links']['self'] = json_url( $this->base . '/' . get_page_uri( $post['ID'] ) );
 
 		$query = array(
-		    'post_type' => 'page',
+		    'post_type'   => 'page',
 		    'post_parent' => $post['ID'],
-		    'nopaging' => true,
-		    'orderby' => 'menu_order',
-		    'order' => 'ASC'
+		    'nopaging'    => true,
+		    'orderby'     => 'menu_order',
+		    'order'       => 'ASC'
 		);
 
 		$page_query = new WP_Query();
@@ -134,12 +134,14 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 
                 // prepare common page fields
                 $page_fields = array(
-                    'title'        => get_the_title( $post['ID'] ), // $post['post_title'],
-                    'status'       => $post['post_status'],
-                    'type'         => $post['post_type'],
-                    'author'       => (int) $post['post_author'],
-                    'content'      => apply_filters( 'the_content', $post['post_content'] ),
-                    'link'          => get_permalink( $post['ID'] ),
+                    'title'   => get_the_title( $post['ID'] ), // $post['post_title'],
+                    'status'  => $post['post_status'],
+                    'type'    => $post['post_type'],
+                    'author'  => (int) $post['post_author'],
+                    'content' => apply_filters( 'the_content', $post['post_content'] ),
+                    'link'    => get_permalink( $post['ID'] ),
+                    'slug'    => $post['post_name'],
+                    'excerpt' => $this->prepare_excerpt( $post['post_excerpt'] )
                 );
 
                 // Post meta
