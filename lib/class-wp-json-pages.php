@@ -112,7 +112,9 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 		$query = array(
 		    'post_type' => 'page',
 		    'post_parent' => $post['ID'],
-		    'nopaging' => true
+		    'nopaging' => true,
+		    'orderby' => 'menu_order',
+		    'order' => 'ASC'
 		);
 
 		$page_query = new WP_Query();
