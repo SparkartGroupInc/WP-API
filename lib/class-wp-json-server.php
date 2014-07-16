@@ -450,6 +450,7 @@ class WP_JSON_Server implements WP_JSON_ResponseHandler {
 	public function get_index() {
 		// General site data
 		$available = array(
+		    'sparkart' => true,
 			'name' => get_option( 'blogname' ),
 			'description' => get_option( 'blogdescription' ),
 			'URL' => get_option( 'siteurl' ),
