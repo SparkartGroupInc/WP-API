@@ -162,7 +162,7 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 			$_post['children'] = false;
 		}
 
-		if ( ! empty( $post['post_parent'] ) )
+		if ( ! empty( $post['post_parent'] ) ) {
 			$_post['meta']['links']['up'] = json_url( $this->base . '/' . get_page_uri( (int) $post['post_parent'] ) );
 		}
 
