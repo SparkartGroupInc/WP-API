@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: WP REST API
- * Description: JSON-based REST API for WordPress, developed as part of GSoC 2013.
+* Plugin Name: WP REST API (Sparkart Fork)
+ * Description: A Sparkart fork of the official JSON-based REST API for WordPress.
  * Version: 1.2.4
- * Author: WP REST API Team
+ * Author: WP REST API Team, Sparkart Team
  * Author URI: http://wp-api.org/
  * Plugin URI: https://github.com/WP-API/WP-API
  */
