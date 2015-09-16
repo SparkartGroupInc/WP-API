@@ -5,7 +5,7 @@
  * Version: 1.2.3
  * Author: WP REST API Team, Sparkart Team
  * Author URI: http://wp-api.org/
- * Plugin URI: https://github.com/WP-API/WP-API
+ * Plugin URI: https://github.com/SparkartGroupInc/WP-API
  */
 
 /**
