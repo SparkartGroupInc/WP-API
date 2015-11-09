@@ -150,8 +150,7 @@ class WP_JSON_Pages extends WP_JSON_CustomPostType {
 					'slug'		=> $post['post_name'],
 					'excerpt'	=> $this->prepare_excerpt( $post['post_excerpt'] )
 				);
-				// Post meta
-				$_post['post_meta'] = $this->prepare_meta( $post['ID'] );
+
 				// Merge requested $post_fields fields into $_post
 				$_post = array_merge( $_post, $page_fields );
 				$struct[] = apply_filters( 'json_prepare_post', $_post, $post, 'view' );
