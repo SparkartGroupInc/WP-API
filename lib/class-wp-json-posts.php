@@ -148,7 +148,8 @@ class WP_JSON_Posts {
 			if ( ! json_check_post_permission( $post, 'read' ) ) {
 				continue;
 			}
-			$response->link_header( 'item', json_url( '/posts/' . $post['ID'] ), array( 'title' => $post['post_title'] ) );
+			// The generated Link header is too large, and we don't really need it
+			// $response->link_header( 'item', json_url( '/posts/' . $post['ID'] ), array( 'title' => $post['post_title'] ) );
 			$post_data = $this->prepare_post( $post, $context );
 			if ( is_wp_error( $post_data ) ) {
 				continue;
